@@ -157,6 +157,33 @@ func main() {
 }
 
 /*
+1、官网地址：https://www.elastic.co/cn/downloads/elasticsearch
+
+解压到：
+/Users/pencil/Documents/gide
+
+2、启动：
+cd bin
+./elasticsearch
+
+3、验证是否启动成功
+游览器输入 localhost:9200
+
+ES启动报错:
+received plaintext http traffic on an https channel, closing connection Netty4HttpChannel
+原因：ES8默认开启了ssl认证，导致无法访问9200端口
+解决：进入config，修改elasticsearch.yml配置，修改完之后，重启一下
+elasticsearch.yml配置:xpack.security.enabled:把true改成false
+
+报错：exception during geoip databases update
+ES默认会去官网下载最新的GEO信息，公司内网server一般和外网不通，所以会报错；
+需要编辑config/elasticsearch.yml，在末尾添加： ingest.geoip.downloader.enabled: false
+
+
+可视化界面 ElasticSearch Head 插件安装
+谷歌商店搜索 ElasticSearch Head 插件 然后安装
+
+
 官方文档
 {
   "query": {
